@@ -1,14 +1,14 @@
 {
-    "name": "jxlwqq/tencent-map",
+    "name": "ares-eng/tencent-map",
     "description": "Tencent Map with search for Laravel-admin",
     "type": "library",
     "keywords": ["laravel-admin", "extension"],
-    "homepage": "https://github.com/jxlwqq/tencent-map",
+    "homepage": "https://github.com/Ares-eng/tencent-map",
     "license": "MIT",
     "authors": [
         {
-            "name": "jxlwqq",
-            "email": "jxlwqq@gmail.com"
+            "name": "ares-eng",
+            "email": "1354709653@qq.com"
         }
     ],
     "require": {
@@ -20,13 +20,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Jxlwqq\\TencentMap\\": "src/"
+            "Encore\\TencentMap\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Jxlwqq\\TencentMap\\TencentMapServiceProvider"
+                "Encore\\TencentMap\\TencentMapServiceProvider"
             ]
 
         }
