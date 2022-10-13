@@ -38,7 +38,7 @@ class TencentMap extends Field
      */
     public static function getAssets()
     {
-        return ['js' => sprintf('//map.qq.com/api/js?v=2.exp&key=%s', config('admin.extensions.tencent-map.api_key'))];
+        return ['js' => sprintf('//map.qq.com/api/js?v=2.exp&key=%s&libraries=place', config('admin.extensions.tencent-map.api_key'))];
     }
 
     /**
@@ -124,15 +124,19 @@ class TencentMap extends Field
             zoom: {$zoom}
         });
 
-        var latlngBounds = new qq.maps.LatLngBounds();
+        var ap = new qq.maps.place.Autocomplete(document.getElementById('keyword'));
         //调用Poi检索类
         searchService = new qq.maps.SearchService({
             complete : function(results){
-                var pois = results.detail.pois;
-                if (pois == null) {
-                    alert("未查询到地址，请重新输入");
-                    return
+                if(results.type === "CITY_LIST") {
+                    searchService.setLocation(results.detail.cities[0].cityName);
+                    var keyword = document.getElementById("keyword").value;
+                    searchService.search(keyword);
+                    return;
                 }
+                
+                var pois = results.detail.pois;
+                var latlngBounds = new qq.maps.LatLngBounds();
                 for(var i = 0,l = pois.length;i < l; i++){
                     var poi = pois[i];
                     latlngBounds.extend(poi.latLng);
