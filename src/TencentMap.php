@@ -1,6 +1,6 @@
 <?php
 
-namespace Encore\TencentMap;
+namespace AresEng\TencentMap;
 
 use Encore\Admin\Form\Field;
 
