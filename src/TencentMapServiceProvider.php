@@ -1,6 +1,6 @@
 <?php
 
-namespace Jxlwqq\TencentMap;
+namespace Encore\TencentMap;
 
 use Encore\Admin\Admin;
 use Encore\Admin\Form;
@@ -13,8 +13,8 @@ class TencentMapServiceProvider extends ServiceProvider
      */
     public function boot(Extension $extension)
     {
-        if (! Extension::boot()) {
-            return ;
+        if (!Extension::boot()) {
+            return;
         }
 
         $this->loadViewsFrom($extension->views(), 'laravel-admin-tencent-map');

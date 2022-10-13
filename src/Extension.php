@@ -1,6 +1,6 @@
 <?php
 
-namespace Jxlwqq\TencentMap;
+namespace Encore\TencentMap;
 
 use Encore\Admin\Extension as BaseExtension;
 

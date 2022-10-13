@@ -1,6 +1,6 @@
 <?php
 
-namespace Jxlwqq\TencentMap;
+namespace Encore\TencentMap;
 
 use Encore\Admin\Form\Field;
 
@@ -51,11 +51,13 @@ class TencentMap extends Field
     {
         $this->column['lat'] = (string)$column;
         $this->column['lng'] = (string)$arguments[0];
+        $this->value['lat']  = 0.000000;
+        $this->value['lng']  = 0.000000;
 
         array_shift($arguments);
 
         $this->label = $this->formatLabel($arguments);
-        $this->id = $this->formatId($this->column);
+        $this->id    = $this->formatId($this->column);
     }
 
     /**
@@ -87,9 +89,8 @@ class TencentMap extends Field
     {
         $this->script = $this->applyScript($this->id, $this->zoom);
 
-        return parent::render()->with(['height' => $this->height]);
-
-
+        $this->variables = ['height' => $this->height];
+        return parent::render();
     }
 
     public function applyScript(array $id, int $zoom)
@@ -128,6 +129,10 @@ class TencentMap extends Field
         searchService = new qq.maps.SearchService({
             complete : function(results){
                 var pois = results.detail.pois;
+                if (pois == null) {
+                    alert("未查询到地址，请重新输入");
+                    return
+                }
                 for(var i = 0,l = pois.length;i < l; i++){
                     var poi = pois[i];
                     latlngBounds.extend(poi.latLng);
